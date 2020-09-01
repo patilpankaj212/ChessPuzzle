@@ -6,11 +6,19 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import chessPuzzle.pieces.position.DiagonalPositions;
+import chessPuzzle.pieces.position.HorizontalPositions;
+import chessPuzzle.pieces.position.Positions;
+import chessPuzzle.pieces.position.VerticalPositions;
+
 class KingTest {
 
 	@Test
 	void testGetAllValidCells() {
 		King king = new King();
+		Positions[] positions = new Positions[] {new VerticalPositions(), new HorizontalPositions(), new DiagonalPositions()};
+		king.setApplicablePositions(positions);
+		
 		String[] validPositions = king.getAllValidCells("D5");
 		assertEquals(8, validPositions.length);
 
@@ -29,6 +37,13 @@ class KingTest {
 		Arrays.sort(actual);
 
 		assertArrayEquals(expected, actual);
+		
+		king.setApplicablePositions(null);
+		assertThrows(RuntimeException.class, () -> king.getAllValidCells("A1"));
+		
+		king.setApplicablePositions(new Positions[] {});
+		assertThrows(RuntimeException.class, () -> king.getAllValidCells("A1"));
+		
 	}
 
 }

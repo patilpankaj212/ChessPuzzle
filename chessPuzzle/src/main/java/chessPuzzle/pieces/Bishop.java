@@ -3,61 +3,23 @@ package chessPuzzle.pieces;
 import java.util.ArrayList;
 import java.util.List;
 
+import chessPuzzle.pieces.position.DiagonalPositions;
+import chessPuzzle.pieces.position.Positions;
+
 public class Bishop extends ChessPiece {
 
 	@Override
-	public String[] getAllValidCells(String currentPosition) {
-		int[] rankAndFile = parseCellValue(currentPosition);
-		int file = rankAndFile[0];
-		int rank = rankAndFile[1];
-
+	List<String> validCells(String currentPosition) {
 		List<String> validPositionsList = new ArrayList<String>();
 
-		/*
-		 * Bishop can move diagonally in all directions
-		 * 1. diagonal NE
-		 * 2. diagonal SE
-		 * 3. diagonal NW
-		 * 4. diagonal SW
-		 */
-		
-		int tempFile = file + 1;
-		int tempRank = rank + 1;
-
-		while (tempFile <= 8 && tempRank <= 8) {
-			validPositionsList.add(getCellValue(tempRank, tempFile));
-			tempFile++;
-			tempRank++;
-		}
-		
-		tempFile = file -1;
-		tempRank = rank -1;
-		
-		while (tempFile >=1 && tempRank >= 1) {
-			validPositionsList.add(getCellValue(tempRank, tempFile));
-			tempFile--;
-			tempRank--;
-		}
-		
-		tempFile = file + 1;
-		tempRank = rank - 1;
-		
-		while(tempFile <= 8 && tempRank >=1) {
-			validPositionsList.add(getCellValue(tempRank, tempFile));
-			tempFile++;
-			tempRank--;
-		}
-		
-		tempFile = file - 1;
-		tempRank = rank + 1;
-		
-		while(tempFile >=1 && tempRank <=8) {
-			validPositionsList.add(getCellValue(tempRank, tempFile));
-			tempFile--;
-			tempRank++;
+		for (Positions position : getApplicablePositions()) {
+			if (!(position instanceof DiagonalPositions)) {
+				throw new RuntimeException("Bishop can only have diagonal positions");
+			}
+			validPositionsList.addAll(position.getPositions(-1, currentPosition, false));
 		}
 
-		return validPositionsList.toArray(new String[] {});
+		return validPositionsList;
 	}
 
 }

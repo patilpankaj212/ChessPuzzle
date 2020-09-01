@@ -1,9 +1,11 @@
 package chessPuzzle.pieces;
 
+import java.util.List;
+
 public class Knight extends ChessPiece {
 
 	@Override
-	public String[] getAllValidCells(String currentPosition) {
+	List<String> validCells(String currentPosition) {
 		// TODO Auto-generated method stub
 		return null;
 	}
