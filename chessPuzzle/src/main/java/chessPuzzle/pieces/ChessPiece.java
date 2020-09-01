@@ -8,7 +8,7 @@ public abstract class ChessPiece {
 	//method of convert rank and file to a square on the board
 	public String getCellValue(int rank, int file) {
 		
-		if(rank < 0 || file < 0) {
+		if(rank < 1 || file < 1) {
 			throw new IllegalArgumentException("Rank and File of a piece cannot be less than 1");
 		}
 		
