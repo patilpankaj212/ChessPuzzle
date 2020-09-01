@@ -3,11 +3,13 @@ package chessPuzzle.pieces;
 import java.util.ArrayList;
 import java.util.List;
 
+import chessPuzzle.util.CellUtils;
+
 public class Bishop extends ChessPiece {
 
 	@Override
 	public String[] getAllValidCells(String currentPosition) {
-		int[] rankAndFile = parseCellValue(currentPosition);
+		int[] rankAndFile = CellUtils.parseCellValue(currentPosition);
 		int file = rankAndFile[0];
 		int rank = rankAndFile[1];
 
@@ -25,7 +27,7 @@ public class Bishop extends ChessPiece {
 		int tempRank = rank + 1;
 
 		while (tempFile <= 8 && tempRank <= 8) {
-			validPositionsList.add(getCellValue(tempRank, tempFile));
+			validPositionsList.add(CellUtils.getCellValue(tempRank, tempFile));
 			tempFile++;
 			tempRank++;
 		}
@@ -34,7 +36,7 @@ public class Bishop extends ChessPiece {
 		tempRank = rank -1;
 		
 		while (tempFile >=1 && tempRank >= 1) {
-			validPositionsList.add(getCellValue(tempRank, tempFile));
+			validPositionsList.add(CellUtils.getCellValue(tempRank, tempFile));
 			tempFile--;
 			tempRank--;
 		}
@@ -43,7 +45,7 @@ public class Bishop extends ChessPiece {
 		tempRank = rank - 1;
 		
 		while(tempFile <= 8 && tempRank >=1) {
-			validPositionsList.add(getCellValue(tempRank, tempFile));
+			validPositionsList.add(CellUtils.getCellValue(tempRank, tempFile));
 			tempFile++;
 			tempRank--;
 		}
@@ -52,7 +54,7 @@ public class Bishop extends ChessPiece {
 		tempRank = rank + 1;
 		
 		while(tempFile >=1 && tempRank <=8) {
-			validPositionsList.add(getCellValue(tempRank, tempFile));
+			validPositionsList.add(CellUtils.getCellValue(tempRank, tempFile));
 			tempFile--;
 			tempRank++;
 		}

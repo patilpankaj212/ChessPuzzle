@@ -3,11 +3,13 @@ package chessPuzzle.pieces;
 import java.util.ArrayList;
 import java.util.List;
 
+import chessPuzzle.util.CellUtils;
+
 public class Pawn extends ChessPiece {
 
 	@Override
 	public String[] getAllValidCells(String currentPosition) {
-		int[] rankAndFile = parseCellValue(currentPosition);
+		int[] rankAndFile = CellUtils.parseCellValue(currentPosition);
 		int file = rankAndFile[0];
 		int rank = rankAndFile[1];
 		
@@ -19,7 +21,7 @@ public class Pawn extends ChessPiece {
 		List<String> validPositionsList = new ArrayList<String>();
 		
 		//pawn can only move 1 rank up
-		validPositionsList.add(getCellValue(rank + 1, file));
+		validPositionsList.add(CellUtils.getCellValue(rank + 1, file));
 		
 		return validPositionsList.toArray(new String[] {});
 	}

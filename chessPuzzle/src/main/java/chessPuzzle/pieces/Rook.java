@@ -3,11 +3,13 @@ package chessPuzzle.pieces;
 import java.util.ArrayList;
 import java.util.List;
 
+import chessPuzzle.util.CellUtils;
+
 public class Rook extends ChessPiece {
 
 	@Override
 	public String[] getAllValidCells(String currentPosition) {
-		int[] rankAndFile = parseCellValue(currentPosition);
+		int[] rankAndFile = CellUtils.parseCellValue(currentPosition);
 		int file = rankAndFile[0];
 		int rank = rankAndFile[1];
 
@@ -23,25 +25,25 @@ public class Rook extends ChessPiece {
 		
 		int tempRank = rank + 1;
 		while (tempRank <= 8) {
-			validPositionsList.add(getCellValue(tempRank, file));
+			validPositionsList.add(CellUtils.getCellValue(tempRank, file));
 			tempRank++;
 		}
 
 		tempRank = rank - 1;
 		while (tempRank >= 1) {
-			validPositionsList.add(getCellValue(tempRank, file));
+			validPositionsList.add(CellUtils.getCellValue(tempRank, file));
 			tempRank--;
 		}
 
 		int tempFile = file + 1;
 		while (tempFile <= 8) {
-			validPositionsList.add(getCellValue(rank, tempFile));
+			validPositionsList.add(CellUtils.getCellValue(rank, tempFile));
 			tempFile++;
 		}
 
 		tempFile = file - 1;
 		while (tempFile >= 1) {
-			validPositionsList.add(getCellValue(rank, tempFile));
+			validPositionsList.add(CellUtils.getCellValue(rank, tempFile));
 			tempFile--;
 		}
 
